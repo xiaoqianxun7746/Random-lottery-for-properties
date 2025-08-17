@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楼盘随机抽签系统</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-building"></i> 楼盘随机抽签系统</h1>
+            <p>公平、透明、随机的楼盘抽签平台</p>
+        </header>
+
+        <div class="main-content">
+            <!-- 楼盘管理区域 -->
+            <div class="section">
+                <h2><i class="fas fa-clipboard-list"></i> 楼盘管理</h2>
+                <div class="add-property">
+                    <input type="text" id="propertyName" placeholder="请输入楼盘名称" maxlength="50">
+                    <input type="number" id="propertyWeight" placeholder="权重(默认1)" min="0.1" max="10" step="0.1" value="1">
+                    <button onclick="addProperty()">添加楼盘</button>
+                </div>
+                
+                <div class="properties-list" id="propertiesList">
+                    <!-- 楼盘列表将在这里动态生成 -->
+                </div>
+            </div>
+
+            <!-- 抽签区域 -->
+            <div class="section">
+                <h2><i class="fas fa-dice"></i> 开始抽签</h2>
+                <div class="lottery-controls">
+                    <button onclick="startLottery()" id="lotteryBtn" class="lottery-btn">
+                        <i class="fas fa-bullseye"></i> 开始抽签
+                    </button>
+                    <button onclick="resetAll()" class="reset-btn">
+                        <i class="fas fa-redo-alt"></i> 重置所有
+                    </button>
+                </div>
+                
+                <div class="result-area" id="resultArea">
+                    <div class="result-display" id="resultDisplay">
+                        <p>点击"开始抽签"进行随机抽取</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 历史记录区域 -->
+            <div class="section">
+                <h2><i class="fas fa-chart-bar"></i> 抽签历史</h2>
+                <div class="history-controls">
+                    <button onclick="clearHistory()" class="clear-btn">清空历史</button>
+                    <button onclick="exportHistory()" class="export-btn">导出记录</button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <!-- 历史记录将在这里显示 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 概率设置模态框 -->
+        <div id="probabilityModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeProbabilityModal()">&times;</span>
+                <h3>设置抽签概率</h3>
+                <p class="modal-desc">调整各楼盘的权重来改变抽中概率。权重越高，被抽中的概率越大。</p>
+                <div id="probabilitySettings"></div>
+                <div class="modal-actions">
+                    <button onclick="saveProbabilities()" class="save-btn">保存设置</button>
+                    <button onclick="resetProbabilities()" class="reset-prob-btn">重置为均等</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
